@@ -13,6 +13,13 @@
 # implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+  # v8-7.5.288
+  # v8-7.6.303
+  # v8
+  # chakra
+  # javascriptcore
+  # spidermonkey
+
 binaries="
   v8-7.5.288
   v8-7.6.303
@@ -27,6 +34,8 @@ for bin in $binaries; do
   time (for i in {1..100}; do $bin out/js.js; done);
   printf "Benchmarking JSON.parse on ${bin}… ";
   time (for i in {1..100}; do $bin out/json.js; done);
+  printf "Benchmarking eval on ${bin}… ";
+  time (for i in {1..100}; do $bin out/js-eval.js; done);
   if [[ $bin == v8* ]]; then
     printf "Benchmarking JS literal with cold loads on ${bin}…\n";
     time $bin realm-js.js --nocompilation-cache;

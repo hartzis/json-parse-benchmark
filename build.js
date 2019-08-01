@@ -27,3 +27,6 @@ fs.writeFileSync('./out/json.js',
 // (We'd need additional escaping if the target was a <script> tag.)
 fs.writeFileSync('./out/js.js',
                  `const data = ${ json };\n`);
+
+fs.writeFileSync('./out/js-eval.js',
+                 'const data = eval("' + jsStringLiteral + '");\n');
